@@ -246,4 +246,36 @@ NOTE: DATA statement used (Total process time):
       OS Memory           18932.00k                                                                             
                                                                                                                 
                                                                                                                 
-                                                                                                                
+ 
+ /*__                                                            
+ / _| ___ _ __ ___  _ __    _ __   ___  _ __                    
+| |_ / __| `_ ` _ \| `_ \  | `_ \ / _ \| `_ \                   
+|  _| (__| | | | | | |_) | | |_) | (_) | |_) |                  
+|_|  \___|_| |_| |_| .__/  | .__/ \___/| .__/                   
+                   |_|     |_|         |_|                      
+*/                                                              
+                                                                
+options cmplib=work.functions;                                  
+proc fcmp outlib=work.functions.temp;                           
+Subroutine utl_pop(string $,word $,action $);                   
+    outargs word, string;                                       
+    length word $4096;                                          
+    select (upcase(action));                                    
+      when ("LAST") do;                                         
+        call scan(string,-1,_action,_length,' ');               
+        word=substr(string,_action,_length);                    
+        string=substr(string,1,_action-1);                      
+      end;                                                      
+                                                                
+      when ("FIRST") do;                                        
+        call scan(string,1,_action,_length,' ');                
+        word=substr(string,_action,_length);                    
+        string=substr(string,_action + _length);                
+      end;                                                      
+                                                                
+      otherwise put "ERROR: Invalid action";                    
+                                                                
+    end;                                                        
+endsub;                                                         
+run;quit;                                                       
+
