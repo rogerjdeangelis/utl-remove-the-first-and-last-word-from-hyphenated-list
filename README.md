@@ -1,7 +1,6 @@
 # utl-remove-the-first-and-last-word-from-hyphenated-list
 Remove the first and last word from hyphenated list 
-    Remove the first and last word from hyphenated list                                                             
-                                                                                                                    
+                                                                               
     github                                                                                                          
     https://tinyurl.com/y2vx2fr4                                                                                    
     https://github.com/rogerjdeangelis/utl-remove-the-first-and-last-word-from-hyphenated-list                      
